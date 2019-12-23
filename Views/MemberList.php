@@ -42,6 +42,7 @@
                 </td>
                 <td width="25%">
                         <input type="search" class="searchBox" name="txtsearch" placeholder="Search...">
+                        <input type="submit" class="btn-View" name="btnSrc" value="Search">
                 </td>
             </tr>
         </table>
@@ -55,7 +56,63 @@
     {
         header('location:Login.php');
     }
-    if(isset($_POST['btnLogout']))
+
+    if(isset($_POST['btnSrc']))
+    {
+        $name = $_POST['txtsearch'];
+        $data = searchStudentMember($name);
+        $view = viewStudentProfile();
+?>
+
+<html>  <!--Searching-->
+    <body class="body-margin">
+        <center>
+            <h3>Search Results</h3>
+            <hr>
+        </center>
+        <table border="0" width="100%">
+            <tr class="table-header">
+                <td>Name</td>
+                <td>Picture</td>
+                <td>Email</td>
+                <td>Phone</td>
+                <td>AIUB ID</td>
+                <td>View Profile</td>
+                <td>Action</td>
+            </tr>
+
+            <?php
+                for($i=0; $i<count($data); $i++)
+                {
+            ?>
+            <tr>
+               <?php
+                    echo "<td> <center>". $data[$i]['Name']. " </center> </td>";
+                    echo '<td> <center>  <img src="../Images/ProfilePicture/'. $data[$i]['ProfilePicture']. '" width="150px" height="120px" </center></td>';
+                    echo "<td> <center>". $data[$i]['email']. " </center> </td>";
+                    echo "<td> <center>". $data[$i]['Phone']. " </center> </td>";
+                    echo "<td> <center>". $data[$i]['AIUB_ID']. " </center> </td>";
+                    echo '<td> <center> <a href="../Profiles/viewAlumniProfile.php?profileOf='.$view[$i]['username'].'"">'.'<input type="submit" class="btn-Block" name="btnview" value="View">'.'</a> </center> </td>';
+                    echo '<td> <center> <form action="../php/deleteAlumniData.php" method="POST">
+                    <input type="hidden" name="email" value= '. $data[$i]['email'] .'> 
+                    <input type="submit" class="btn-Delete" name="btnDelete" value="Delete"></form> </center> </td>';
+               ?>
+            </tr>
+            <?php
+                }
+            ?>
+            <tr> <!--For Horizontal Line-->
+                <td colspan="7">
+                    <hr>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>
+            
+<?php
+    }
+    elseif(isset($_POST['btnLogout']))
     {
         header('location:../php/Logout.php');
     }
@@ -63,7 +120,8 @@
 <?php
     if(isset($_POST['btnFacultyMember']))
     {
-        $data = getAllFacultyList();
+      $data = getAllFacultyList();
+      $view = viewFacultyProfile();
 ?>
 
 <html>
@@ -79,6 +137,7 @@
                 <td>Email</td>
                 <td>Phone</td>
                 <td>AIUB ID</td>
+                <td>View Profile</td>
                 <td>Action</td>
             </tr>
 
@@ -88,16 +147,21 @@
             ?>
             <tr>
                <?php
-                    echo "<td> <center>". $data[$i]['Name']. " </center> </td>";
+                    
+                    echo "<td> <center> <h3>". $data[$i]['Name']. " </h3></center> </td>";
                     echo '<td> <center>  <img src="../Images/ProfilePicture/'. $data[$i]['ProfilePicture']. '" width="150px" height="120px" </center></td>';
                     //echo '<td> <img src="../Images/ProfilePicture/" width="150px" height="150px" </td>';
                     echo "<td> <center>". $data[$i]['email']. " </center> </td>";
                     echo "<td> <center>". $data[$i]['Phone']. " </center> </td>";
                     echo "<td> <center>". $data[$i]['AIUB_ID']. " </center> </td>";
+                    echo '<td> <center> <a href="../Profiles/viewFacultyProfile.php?profileOf='.$view[$i]['username'].'"">'.'<input type="submit" class="btn-Block" name="btnview" value="View">'.'</a> </center> </td>';
                     echo '<td> <center> <form action="../php/deleteFacultyData.php" method="POST">
                     <input type="hidden" name="email" value= '. $data[$i]['email'] .'> 
                     <input type="submit" class="btn-Delete" name="btnDelete" value="Delete"></form> </center> </td>';
                ?>
+            </tr>
+            <tr>
+                <td colspan="7"><hr></td>
             </tr>
             <?php
                 }
@@ -117,6 +181,7 @@
     elseif(isset($_POST['btnAlumniMember']))  //Alumni Lists
     {
         $data = getAllAlumniList();
+        $view = viewAlumniProfile();
 ?>
 <html>  <!--Alumni All Member List-->
     <body class="body-margin">
@@ -131,6 +196,7 @@
                 <td>Email</td>
                 <td>Phone</td>
                 <td>AIUB ID</td>
+                <td>View Profile</td>
                 <td>Action</td>
             </tr>
 
@@ -145,6 +211,7 @@
                     echo "<td> <center>". $data[$i]['email']. " </center> </td>";
                     echo "<td> <center>". $data[$i]['Phone']. " </center> </td>";
                     echo "<td> <center>". $data[$i]['AIUB_ID']. " </center> </td>";
+                    echo '<td> <center> <a href="../Profiles/viewAlumniProfile.php?profileOf='.$view[$i]['username'].'"">'.'<input type="submit" class="btn-Block" name="btnview" value="View">'.'</a> </center> </td>';
                     echo '<td> <center> <form action="../php/deleteAlumniData.php" method="POST">
                     <input type="hidden" name="email" value= '. $data[$i]['email'] .'> 
                     <input type="submit" class="btn-Delete" name="btnDelete" value="Delete"></form> </center> </td>';
@@ -168,6 +235,8 @@
     {
        
         $data = getAllStudentList();
+        $view = viewStudentProfile();
+        
 ?>
 
 <html>  <!--Student All Member List-->
@@ -185,6 +254,7 @@
                 <td>Email</td>
                 <td>AIUB ID</td>
                 <td>Phone</td>
+                <td>View Profile</td>
                 <td>Action</td>
             </tr>
             
@@ -194,21 +264,28 @@
             ?>
             <tr>
                <?php
-                    echo "<td> <center>". $data[$i]['Name']. " </center> </td>";
+                    echo '<td> <center> <h3>'. $data[$i]['Name']. '</h3> </center> </td>';
                     echo '<td> <center>  <img src="../Images/ProfilePicture/'. $data[$i]['ProfilePicture']. '" width="150px" height="120px" </center></td>';
                     echo "<td> <center>". $data[$i]['email']. " </center> </td>";
-                    echo "<td> <center>". $data[$i]['Phone']. " </center> </td>";
                     echo "<td> <center>". $data[$i]['AIUB_ID']. " </center> </td>";
+                    echo "<td> <center>". $data[$i]['Phone']. " </center> </td>";
+                    //echo '<td> <a href="../Profiles/viewStudentProfile.php?profileOf='.$view[$i]['username'].'"">'.$view[$i]['username'].'</a>';
+                    echo '<td> <center> <a href="../Profiles/viewStudentProfile.php?profileOf='.$view[$i]['username'].'"">'.'<input type="submit" class="btn-Block" name="btnview" value="View">'.'</a> </center> </td>';
                     echo '<td> <center> <form action="../php/deleteStudentData.php" method="POST">
                     <input type="hidden" name="email" value= '. $data[$i]['email'] .'> 
                     <input type="submit" class="btn-Delete" name="btnDelete" value="Delete"></form> </center> </td>';
                ?>
             </tr>
+
+            <tr>
+                <td colspan="7"><hr></td>
+            </tr>
+
             <?php
                 }
             ?>
             <tr>
-                <td class="fotter" colspan="6">
+                <td class="fotter" colspan="7">
                     <center>
                         copyright@MahfuzNazib
                     </center>

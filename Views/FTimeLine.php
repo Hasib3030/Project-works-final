@@ -87,13 +87,13 @@
                     <a href="FacultyHome.php"><button class="profile-HeaderButton">Home</button></a>
                     <a href="FProfile.php"><button class="profile-HeaderButton">Profile</button></a>
                     <a href="FTimeLine.php"><button class="profile-HeaderButton">TimeLine</button></a>
-                    <a href="FacultyChat.php"><button class="profile-HeaderButton">Chat</button></a>
+                    
                     <a href="../php/Logout.php"><button class="profile-HeaderButton">Logout</button></a>
                     </center>
                     
             </td>
             <td width=25%>
-                <input type="search" class="searchBox" name="txtsearch" placeholder="Search...">
+                
             </td>
         </tr>
 
@@ -152,7 +152,7 @@
                         <?php
                             }
                         ?>
-                        <tr ><input type="submit" name="like" class="profile-HeaderButton" value="<?=$row[$i]['Likes']?> Like">  </tr> <br>
+                        <tr >  </tr> <br>
                         <tr> <hr> </tr>
                     
                     </tr>
@@ -171,7 +171,7 @@
         <tr>
             <td colspan="3" class="fotter">
                 <center>
-                    Copyright@MahfuzNazib
+                    Copyright@Hasib Ahmed
                 </center>
             </td>
         </tr>

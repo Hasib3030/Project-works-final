@@ -114,7 +114,7 @@
                         <button class="profile-HeaderButton" name="home">Home</button>
                         <button class="profile-HeaderButton" name="profile">Profile</button>
                         <button class="profile-HeaderButton" name="timeline">TimeLine</button>
-                        <button class="profile-HeaderButton" name="chat">Chat</button>
+                        
                         <button class="profile-HeaderButton" name="logout">Logout</button>
                         
                     </center>
@@ -324,7 +324,7 @@
             <tr>
                 <td colspan="2" class="fotter">
                     <center>
-                        Copyright@MahfuzNazib
+                        Copyright@Hasib Ahmed
                     </center>
                 </td>
             </tr>

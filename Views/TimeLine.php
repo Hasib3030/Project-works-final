@@ -84,13 +84,15 @@
                     <a href="StudentHome.php"><button class="profile-HeaderButton">Home</button></a>
                     <a href="SProfile.php"><button class="profile-HeaderButton">Profile</button></a>
                     <a href="TimeLine.php"><button class="profile-HeaderButton">TimeLine</button></a>
-                    <a href="Chat.php"><button class="profile-HeaderButton">Chat</button></a>
+                   
                     <a href="../php/Logout.php"><button class="profile-HeaderButton">Logout</button></a>
                     </center>
                     
             </td>
             <td width=25%>
-                <input type="search" class="searchBox" name="txtsearch" placeholder="Search...">
+                <!--<input type="search" class="searchBox" name="txtsearch" placeholder="Search...">
+                <input type="submit" name="btnSrc" class="btn-View" value="Search">-->
+                <!--<img src="../Images/timeline.gif" height="60px" width="20%">-->
             </td>
         </tr>
 
@@ -179,7 +181,7 @@
 
 <?php
     }
-
+    
     else
     {
         header('location:Login.php');

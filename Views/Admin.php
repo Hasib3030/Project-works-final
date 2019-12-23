@@ -35,15 +35,16 @@
                                     <button class="profile-HeaderButton" name="btnMembers">Members</button>
                                     <button class="profile-HeaderButton" name="btnPosts">Posts</button>
                                     <button class="profile-HeaderButton" name="btnTimeLine">TimeLine</button>
-                                    <button class="profile-HeaderButton" name="btnChat">Chat</button>
+                                    <!--<button class="profile-HeaderButton" name="btnChat">Chat</button>-->
                                     <button class="profile-HeaderButton" name="btnAddAdmin">AddAdmin</button>
                                     <button class="profile-HeaderButton" name="btnLogout">Logout</button>
                                     
                                 </center>
                             
                         </td>
-                        <td width="15%">
+                        <td width="20%">
                             <input type="search" class="searchBox" name="txtsearch" placeholder="Search...">
+                            <input type="submit" class="btn-View" value="Search" name="btnSrc">
                         </td>
                     </tr>
             </table>
@@ -111,6 +112,61 @@
     {
         header('location:MemberList.php');
     }
+    elseif(isset($_POST['btnSrc'])) //Searching
+    {
+        $keyword = $_POST['txtsearch'];
+        $post = searching($keyword);
+?>
+
+<html>
+    <body>
+        <center>
+            <h3>Search Results</h3>
+            <hr><hr>
+        </center>
+
+        <table border="0" width="100%">
+        <tr class="table-header">
+                <td>Post ID</td>
+                <td>Post Date</td>
+                <td>Name</td>
+                <td>Details</td>
+                <td>Image</td>
+                <td>Actions</td>
+                
+            </tr>
+
+            <?php
+                for($i=0;$i<count($post);$i++)
+                {
+            ?>
+            <tr>
+                <?php
+                    echo "<td><center>". $post[$i]['PostID']."</center></td>";
+                    echo "<td> <center>". $post[$i]['Date']. "</center> </td>";
+                    echo "<td> <center>". $post[$i]['username']. "</center> </td>";
+                    echo "<td> <center>". $post[$i]['Text']. "</center> </td>";
+                    echo '<td> <center>  <img src="../Images/Posts/'. $post[$i]['Image']. '" width="150px" height="120px" </center></td>';
+                    echo '<td> <center> <form action="../php/deletePost.php" method="POST">
+                    <input type="hidden" name="id" value= '. $post[$i]['PostID'] .'> 
+                    <input type="submit" class="btn-Delete" name="btnDelete" value="Delete"></form> </center> </td>';
+                    //echo '<td> <a href="../Profiles/viewStudentProfile.php?profileOf='.$post[$i]['username'].'">'.$post[$i]['username'].'</a>';
+                ?>
+            </tr>
+            <tr>
+                <td colspan="6"><hr></td>
+            </tr>
+            <?php
+                }
+            ?>
+            
+        </table>
+    </body>
+</html>
+
+
+<?php
+    }
     else
     {
         $post = getAllPost();
@@ -125,11 +181,13 @@
 
         <table border="0" width="100%">
         <tr class="table-header">
+                <td>Post ID</td>
                 <td>Post Date</td>
                 <td>Name</td>
                 <td>Details</td>
                 <td>Image</td>
                 <td>Actions</td>
+                
             </tr>
 
             <?php
@@ -138,17 +196,19 @@
             ?>
             <tr>
                 <?php
+                    echo "<td><center>". $post[$i]['PostID']."</center></td>";
                     echo "<td> <center>". $post[$i]['Date']. "</center> </td>";
                     echo "<td> <center>". $post[$i]['username']. "</center> </td>";
                     echo "<td> <center>". $post[$i]['Text']. "</center> </td>";
                     echo '<td> <center>  <img src="../Images/Posts/'. $post[$i]['Image']. '" width="150px" height="120px" </center></td>';
                     echo '<td> <center> <form action="../php/deletePost.php" method="POST">
-                    <input type="hidden" name="Date" value= '. $post[$i]['Date'] .'> 
+                    <input type="hidden" name="id" value= '. $post[$i]['PostID'] .'> 
                     <input type="submit" class="btn-Delete" name="btnDelete" value="Delete"></form> </center> </td>';
+                    //echo '<td> <a href="../Profiles/viewStudentProfile.php?profileOf='.$post[$i]['username'].'">'.$post[$i]['username'].'</a>';
                 ?>
             </tr>
             <tr>
-                <td colspan="5"><hr></td>
+                <td colspan="6"><hr></td>
             </tr>
             <?php
                 }

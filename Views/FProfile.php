@@ -55,7 +55,7 @@
                         <button class="profile-HeaderButton" name="btnHome">Home</button>
                         <button class="profile-HeaderButton" name="btnProfile">Profile</button>
                         <button class="profile-HeaderButton" name="btnTimeLine">TimeLine</button>
-                        <button class="profile-HeaderButton" name="btnChat">Chat</button>
+
                         <button class="profile-HeaderButton" name="btnLogout">Logout</button>
                     </center>
                 </td>
@@ -252,7 +252,7 @@
             <tr>
                 <td colspan="2" class="fotter">
                     <center>
-                        Copyright@MahfuzNazib
+                        Copyright@Hasib Ahmed
                     </center>
                 </td>
             </tr>

@@ -51,13 +51,13 @@
                     
                     <button class="profile-HeaderButton" name="btnProfile">Profile</button>
                     <button class="profile-HeaderButton" name="btnTimeLine">TimeLine</button>
-                    <button class="profile-HeaderButton" name="btnChat">Chat</button>
+                    <!--<button class="profile-HeaderButton" name="btnChat">Chat</button>-->
                     <button class="profile-HeaderButton" name="btnLogout">Logout</button>
                     </center>
                     
             </td>
             <td width=25%>
-                <input type="search" class="searchBox" name="txtsearch" placeholder="Search...">
+                <!--<input type="search" class="searchBox" name="txtsearch" placeholder="Search...">-->
             </td>
         </tr>
         <tr>
@@ -101,7 +101,7 @@
             ?>
             <tr>
                 <td>
-                    <h3><?=$post[$i]['username']; ?></h3>
+                    <h3><a href="../Profiles/viewFacultyProfile.php?profileOf=<?=$post[$i]['username']; ?>"><?=$post[$i]['username']; ?></a></h3>
                     <i><?=$post[$i]['Date'] ?></i>
                     <p><center><?=$post[$i]['Text'] ?></center></p>
 
@@ -125,7 +125,7 @@
                         }
                     ?>
                     <center>
-                        <button class="profile-HeaderButton">1 Likes</button>
+                        <!--<button class="profile-HeaderButton">1 Likes</button>-->
                     </center>
                 </td>
             </tr>
@@ -137,6 +137,8 @@
             <?php
                 }
             ?>
+        </table>
+    </center>
             
 <?php
     }
@@ -162,7 +164,7 @@
             ?>
             <tr>
                 <td>
-                    <h3><?=$post[$i]['username']; ?></h3>
+                    <h3><a href="../Profiles/viewAlumniProfile.php?profileOf=<?=$post[$i]['username']; ?>"><?=$post[$i]['username']; ?></a></h3>
                     <i><?=$post[$i]['Date'] ?></i>
                     <p><center><?=$post[$i]['Text'] ?></center></p>
 
@@ -186,7 +188,7 @@
                         }
                     ?>
                     <center>
-                        <button class="profile-HeaderButton">1 Likes</button>
+                        <!--<button class="profile-HeaderButton">1 Likes</button>-->
                     </center>
                 </td>
             </tr>
@@ -228,7 +230,7 @@
             ?>
             <tr>
                 <td>
-                    <h3><?=$post[$i]['username']; ?></h3>
+                    <h3><a href="../Profiles/viewStudentProfile.php?profileOf=<?=$post[$i]['username']; ?>"><?=$post[$i]['username']; ?></a></h3>
                     <i><?=$post[$i]['Date'] ?></i>
                     <p><center><?=$post[$i]['Text'] ?></center></p>
 
@@ -252,7 +254,7 @@
                         }
                     ?>
                     <center>
-                        <button class="profile-HeaderButton">1 Likes</button>
+                        <!--<button class="profile-HeaderButton">1 Likes</button>-->
                     </center>
                 </td>
             </tr>
@@ -294,9 +296,42 @@
             ?>
             <tr >
                 <td>
-                    <h3><?=$post[$i]['username']; ?></h3>
+                    <table>
+                        <tr>
+                            <td>  </td>
+                            <td> <?php
+                                    $status = $post[$i]['Status'];
+                                    if($status == "Admin")
+                                    {
+                                        echo '<h2><u><i>'.$post[$i]['username'].'</i></u></h2>';
+                                        //echo '<img src="../Images/Admin.png"> ';
+                                        echo '['.$status.']';
+                                    }
+                                    elseif($status == "Student")
+                                    {
+                                        echo '<h2><a href="../Profiles/viewStudentProfile.php?profileOf='.$post[$i]['username'].'">'.$post[$i]['username'].'</a> </h2>';
+                                        //echo '<img src="../Images/student.png"> ';
+                                        echo '['.$status.']';
+                                    }
+
+                                    elseif($status == "Alumni")
+                                    {
+                                        echo '<h2><a href="../Profiles/viewAlumniProfile.php?profileOf='.$post[$i]['username'].'">'.$post[$i]['username'].'</a> </h2>';
+                                        //echo '<img src="../Images/alumni.png"> ';
+                                        echo '['.$status.']';
+                                    }
+
+                                    elseif($status == "Faculty")
+                                    {
+                                        echo '<h2><a href="../Profiles/viewFacultyProfile.php?profileOf='.$post[$i]['username'].'">'.$post[$i]['username'].'</a> </h2>';
+                                        //echo '<img src="../Images/faculty.png"> ';
+                                        echo '['.$status.']';
+                                    }
+                                ?>
+                            </td>
+                        </tr>
+                    </table>
                     <i><?=$post[$i]['Date']; ?></i>
-                    
                     <p> <center><?=$post[$i]['Text']; ?> </center></p>
                     <?php
                         if($post[$i]['Image'] == null)
@@ -311,7 +346,7 @@
                         } 
                     ?>
                     <center>
-                        <button class="profile-HeaderButton">1 Likes</button>
+                        <!--<button class="profile-HeaderButton">1 Likes</button>-->
                     </center> <br><br>  
                     <hr>
                 </td>
@@ -339,7 +374,7 @@
         <tr>
             <td class="fotter">
                 <center>
-                    Copyright@MahfuzNazib
+                    Copyright@Hasib Ahmed
                 </center>
             </td>
         </tr>

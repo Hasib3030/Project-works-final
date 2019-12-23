@@ -1,5 +1,5 @@
 <!--CSS Code for empty Username or Password-->
-<style>
+<!--<style>
     .errMsg
  {
      font-family: Verdana;
@@ -30,7 +30,7 @@
      cursor:pointer;
  }
  
-</style>
+</style>-->
 
 <?php
     session_start();
@@ -43,7 +43,7 @@
         $uname = $_POST['Username'];
         $pass = $_POST['Password'];
        
-        /*if(empty($uname) == true)
+        if(empty($uname) == true)
         {
             
            $errUsername =   "<div class=\"errMsg\">Empty Username </div>";
@@ -63,7 +63,7 @@
                     $errInvalid = "<div class=\"invalid_User_Pass\">Invalid Username or Password</div>";
                 }
             }
-        }*/
+        }
         
     }
 
@@ -93,19 +93,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+   <!-- <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="Stylesheet" href="App.css">
+    <link rel="Stylesheet" href="App.css">-->
     <title>Login</title>
     <!--Background Image CSS-->
-    <style type="text/css">
+    <!--<style type="text/css">
         body
         {
             background-image: url(../bg.jpg);
             background-size: cover;
         }
-    </style>
+    </style>-->
 </head>
 <body>
     <table border="0" class="table" width="320px" height="400px">
@@ -120,24 +120,35 @@
         </tr>
         <tr>  
             <td>
-                <input type="text" class="login-input" placeholder="Username" name="Username" id= "idUsername"> <?php echo $errUsername ?>
+                <center>
+                 <input type="text" class="login-input" placeholder="Username" name="Username" id= "idUsername"> <?php echo $errUsername ?>
+               </center>
             </td>
             
         </tr>
         <tr>
             <td>
-                <input type="password" class="login-input" placeholder="Password" name="Password" id= "idPassword"> <?php echo $errPassword ?>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <input type="submit" value="Login" class="login-button" name="submit" onclick="loginValueCheck()">
+                <center>
+                  <input type="password" class="login-input" placeholder="Password" name="Password" id= "idPassword"> <?php echo $errPassword ?>
+                </center>
             </td>
         </tr>
         <tr>
             <td>
                 <center>
-                    <?php echo $errInvalid ?>
+                  <input type="submit" value="Login" class="login-button" name="submit">
+                </center>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <center>
+                    <?php 
+                        if(isset($_POST['submit']))
+                        {
+                            echo $_GET['$err'];
+                        }
+                    ?>
                 </center>
             </td>
         </tr>
